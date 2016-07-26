@@ -21,4 +21,4 @@ vim secret.json
 
 --------
 
-MIT License
+[MIT License](LICENSE.md)
