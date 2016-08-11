@@ -3,7 +3,7 @@ AWS Report Downloader
 
 ```bash
 npm install
-cp secret.json secret.json.example
+cp secret.toml secret.toml.example
 
 # Fill in your AWS account info
 vim secret.json
