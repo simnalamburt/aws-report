@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const querystring = require('querystring');
 const Nightmare = require('nightmare');
 const fetch = require('node-fetch');
 const { email, password } = require('./secret.json');
@@ -21,7 +22,16 @@ Nightmare({ show: true })
   const options = { headers: { cookie } };
 
   // 다운로드
-  fetch('https://console.aws.amazon.com/billing/rest/v1.0/reports/usage/getusagereport?service=AmazonRDS&format=csv&granularity=days&startTime=1464739200000&endTime=1467244800000&lang=ko-kr', options)
+  const params = querystring.stringify({
+    service: 'AmazonRDS',
+    format: 'csv',
+    granularity: 'days',
+    startTime: 1464739200000,
+    endTime: 1467244800000,
+    lang: 'ko-kr',
+  });
+
+  fetch(`https://console.aws.amazon.com/billing/rest/v1.0/reports/usage/getusagereport?${params}`, options)
   .then(res => res.text())
   .then(body => {
     console.log(body);
